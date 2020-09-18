@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const Home = () => {
   const [todos, seTtodos] = useState([]);
-  const [item, setitem] = useState("");
+  const [item, setitem] = useState();
   const set = (e) => {
     setitem(e.target.value);
   };
+
   const addnew = () => {
-    item == "" ? alert("Wrong") : seTtodos([...todos, item]), setitem("");
+    seTtodos([...todos, item]);
+    setitem("");
+    localStorage.setItem("todo", JSON.stringify([...todos, item]));
   };
+  useEffect(() => {
+    const _todo = localStorage.getItem("todo");
+    if (_todo) {
+      seTtodos(JSON.parse(_todo));
+    }
+  }, [])
+
+
   return (
     <>
       <div className="container">
@@ -16,13 +27,26 @@ const Home = () => {
           <button onClick={addnew}>
             <img src="./image/add-logo.png"></img>
           </button>
+          <button onClick={
+            () => {
+              seTtodos([]);
+              localStorage.removeItem("todo")
+            }
+          }>
+            <img src="./image/111.png"></img>
+          </button>
         </div>
         <div className="list">
           {todos.map((item, index) => (
             <div key={index} className="list-item">
               <p>{item}</p>
               <button
-                onClick={() => seTtodos(todos.filter((el) => el !== item))}
+                onClick={() => {
+                  seTtodos(todos.filter((el, indexx) => el !== item));
+                  localStorage.setItem("todo", JSON.stringify(todos.filter((el, indexx) => el !== item)))
+                }
+
+                }
               >
                 <img src="./image/111.png"></img>
               </button>
