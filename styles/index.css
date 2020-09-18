@@ -17,6 +17,12 @@ button:hover,
 input:hover {
   opacity: 0.8;
 }
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  color: #fff;
+  font-size: 50px;
+}
 img {
   width: 30%;
 }
@@ -33,7 +39,7 @@ button {
   background-color: #ddd;
   border-radius: 4px;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 80px;
   display: flex;
 }
 .todo input {

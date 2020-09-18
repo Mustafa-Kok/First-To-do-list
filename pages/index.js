@@ -22,6 +22,7 @@ const Home = () => {
   return (
     <>
       <div className="container">
+        <h1>TO DO List</h1>
         <div className="todo">
           <input placeholder="Write To do" value={item} onChange={set} />
           <button onClick={addnew}>
